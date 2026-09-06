@@ -167,7 +167,7 @@ function DashboardHome({ stats }) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-semibold">Total Revenue</p>
-              <p className="text-4xl font-bold text-accent mt-2">${stats.totalRevenue.toFixed(2)}</p>
+              <p className="text-4xl font-bold text-accent mt-2">Rs{stats.totalRevenue.toFixed(2)}</p>
             </div>
             <BarChart3 className="text-accent opacity-20" size={40} />
           </div>

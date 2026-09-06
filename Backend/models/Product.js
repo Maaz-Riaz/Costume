@@ -28,11 +28,7 @@ const ProductSchema = new mongoose.Schema(
       enum: ['Superhero', 'Animal', 'Princess', 'Halloween', 'Occupation', 'Other'],
       required: [true, 'Please select a category']
     },
-    ageRange: {
-      type: String,
-      enum: ['2-4', '4-6', '6-8', '8-10', '10-12', '12+'],
-      required: [true, 'Please specify age range']
-    },
+  
     sizes: {
       type: [String],
       required: true,

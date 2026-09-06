@@ -72,7 +72,7 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="customer-page detail-page max-w-7xl mx-auto px-4 py-8">
+    <div className="customer-page detail-page detail-reveal max-w-7xl mx-auto px-4 py-8">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 text-primary hover:underline mb-8"
@@ -83,7 +83,7 @@ export default function ProductDetailPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Image Gallery */}
         <div>
-          <div className="relative bg-gray-200 h-96 rounded-lg overflow-hidden mb-4">
+          <div className="relative bg-gray-200 h-96 rounded-lg overflow-hidden mb-4 gallery-frame">
             <img
               src={product.images?.[currentImageIndex] || '/placeholder.jpg'}
               alt={product.name}
@@ -135,9 +135,7 @@ export default function ProductDetailPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-2">{product.name}</h1>
 
           <div className="flex gap-4 mb-4">
-            <span className="bg-primary bg-opacity-20 text-primary px-3 py-1 rounded-full text-sm font-medium">
-              Age: {product.ageRange}
-            </span>
+            
             <span className="bg-secondary bg-opacity-20 text-secondary px-3 py-1 rounded-full text-sm font-medium">
               {product.category}
             </span>
@@ -146,7 +144,7 @@ export default function ProductDetailPage() {
           <p className="text-gray-600 text-lg mb-6">{product.description}</p>
 
           <div className="mb-6">
-            <p className="text-4xl font-bold text-primary">${getPrice().toFixed(2)}</p>
+            <p className="text-4xl font-bold text-primary">PKR {getPrice().toFixed(2)}</p>
            
           </div>
 

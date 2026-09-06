@@ -18,13 +18,13 @@ export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   const categories = ['Superhero', 'Animal', 'Princess', 'Halloween', 'Occupation', 'Other'];
-  const ageRanges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12+'];
-  const priceRanges = [
-    { label: 'Under $25', min: 0, max: 25 },
-    { label: '$25 - $50', min: 25, max: 50 },
-    { label: '$50 - $100', min: 50, max: 100 },
-    { label: 'Over $100', min: 100, max: 999999 }
-  ];
+  // const ageRanges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12+'];
+  // const priceRanges = [
+  //   { label: 'Under $25', min: 0, max: 25 },
+  //   { label: '$25 - $50', min: 25, max: 50 },
+  //   { label: '$50 - $100', min: 50, max: 100 },
+  //   { label: 'Over $100', min: 100, max: 999999 }
+  // ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -73,7 +73,7 @@ export default function ProductsPage() {
 
   return (
     <div className="customer-page products-page max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">🎭 Our Costumes</h1>
+      <h1 className="text-4xl font-bold mb-8">Our Costumes</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Filters Sidebar */}
@@ -113,54 +113,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Age Range */}
-              <div>
-                <label className="block text-sm font-semibold mb-2">Age Range</label>
-                <select
-                  value={filters.ageRange}
-                  onChange={(e) => handleFilterChange('ageRange', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                >
-                  <option value="">All Ages</option>
-                  {ageRanges.map((age) => (
-                    <option key={age} value={age}>{age} years</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Price Range */}
-              <div>
-                <label className="block text-sm font-semibold mb-3">Price Range</label>
-                <div className="space-y-2">
-                  {priceRanges.map((range) => (
-                    <label key={range.label} className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="radio"
-                        name="price"
-                        checked={filters.priceMin === String(range.min) && filters.priceMax === String(range.max)}
-                        onChange={() => {
-                          handleFilterChange('priceMin', String(range.min));
-                          handleFilterChange('priceMax', String(range.max));
-                        }}
-                        className="w-4 h-4"
-                      />
-                      <span className="text-sm">{range.label}</span>
-                    </label>
-                  ))}
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="price"
-                      checked={!filters.priceMin && !filters.priceMax}
-                      onChange={() => {
-                        handleFilterChange('priceMin', '');
-                        handleFilterChange('priceMax', '');
-                      }}
-                      className="w-4 h-4"
-                    />
-                    <span className="text-sm">All Prices</span>
-                  </label>
-                </div>
-              </div>
+             
 
               <button
                 onClick={resetFilters}

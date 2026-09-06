@@ -108,7 +108,7 @@ export default function OrderManagementPage() {
                     <td className="p-4 font-mono text-sm">{order._id.substring(0, 8)}...</td>
                     <td className="p-4 font-medium">{order.customerName}</td>
                     <td className="p-4 text-sm">{order.email}</td>
-                    <td className="p-4 font-semibold text-primary">${order.totalAmount.toFixed(2)}</td>
+                    <td className="p-4 font-semibold text-primary">Rs {order.totalAmount.toFixed(2)}</td>
                     <td className="p-4">
                       <select
                         value={order.status}

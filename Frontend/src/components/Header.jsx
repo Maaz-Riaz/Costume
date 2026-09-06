@@ -21,7 +21,7 @@ export default function Header() {
         <div className="hidden md:flex site-links">
           <Link to="/" className="active">Home</Link>
           <Link to="/products">Costumes</Link>
-          <Link to="/products?category=Superhero">Superheroes</Link>
+          {/* <Link to="/products?category=Superhero">Superheroes</Link> */}
           {isAuthenticated && (
             <Link to="/admin">Dashboard</Link>
           )}

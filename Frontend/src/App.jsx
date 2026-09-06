@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authStore';
 
@@ -31,6 +32,57 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+function CustomerSurface() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const root = document.querySelector('.route-surface');
+    if (!root) return undefined;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    const observeRevealElements = () => {
+      root.querySelectorAll('.scroll-reveal:not(.is-visible)').forEach((element) => {
+        revealObserver.observe(element);
+      });
+    };
+
+    observeRevealElements();
+    const contentObserver = new MutationObserver(observeRevealElements);
+    contentObserver.observe(root, { childList: true, subtree: true });
+
+    return () => {
+      revealObserver.disconnect();
+      contentObserver.disconnect();
+    };
+  }, [location.pathname]);
+
+  return (
+    <div key={location.pathname} className="route-surface">
+      <Header />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-confirmation/:orderId" element={<OrderConfirmationPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
@@ -52,21 +104,7 @@ function App() {
           <Route
             path="/*"
             element={
-              <>
-                <Header />
-                <main className="flex-grow">
-                  <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/products" element={<ProductsPage />} />
-                    <Route path="/products/:id" element={<ProductDetailPage />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/order-confirmation/:orderId" element={<OrderConfirmationPage />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Routes>
-                </main>
-                <Footer />
-              </>
+              <CustomerSurface />
             }
           />
         </Routes>

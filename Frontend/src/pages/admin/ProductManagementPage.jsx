@@ -125,7 +125,7 @@ export default function ProductManagementPage() {
                       <p className="text-sm text-gray-600">{product.ageRange}</p>
                     </td>
                     <td className="p-4">{product.category}</td>
-                    <td className="p-4 font-semibold text-primary">${product.price}</td>
+                    <td className="p-4 font-semibold text-primary">Rs{product.price}</td>
                     <td className="p-4">
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                         product.stock > 0

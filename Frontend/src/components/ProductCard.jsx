@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
 
   return (
     <Link to={`/products/${product._id}`}>
-      <div className="catalog-card card overflow-hidden hover:shadow-xl transition-all h-full flex flex-col">
+      <div className="catalog-card card reveal-card scroll-reveal overflow-hidden hover:shadow-xl transition-all h-full flex flex-col">
         {/* Image Container */}
         <div className="relative bg-gray-200 h-48 overflow-hidden">
           <img
@@ -54,15 +54,13 @@ export default function ProductCard({ product }) {
           <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">{product.name}</h3>
           
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs bg-primary bg-opacity-20 text-primary px-2 py-1 rounded">
-              Age: {product.ageRange}
-            </span>
+            
             <span className="text-xs bg-secondary bg-opacity-20 text-secondary px-2 py-1 rounded">
               {product.category}
             </span>
           </div>
 
-          <p className="text-2xl font-bold text-primary mb-4">${getPrice().toFixed(2)}</p>
+          <p className="text-2xl font-bold text-primary mb-4">PKR {getPrice().toFixed(2)}</p>
 
           {/* Quick Add Button */}
           {inStock ? (

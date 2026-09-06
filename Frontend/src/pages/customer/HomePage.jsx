@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 import { ArrowUpRight, ChevronRight, Loader, Shield, Sparkles, Star, Zap } from 'lucide-react';
 
 const characterDrops = [
-  { name: 'Spider-Man', detail: 'Web-slinging ready', color: 'red', image: 'https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&w=800&q=85' },
+  { name: 'Spider-Man', detail: 'Web-slinging ready', color: 'red', image: 'https://i.pinimg.com/736x/45/ca/6d/45ca6d26e1ebed73f770ec9a3c9c5148.jpg' },
   { name: 'Hulk', detail: 'Smash-approved suits', color: 'green', image: 'https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?auto=format&fit=crop&w=800&q=85' },
   { name: 'Batman', detail: 'Gotham after dark', color: 'black', image: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?auto=format&fit=crop&w=800&q=85' },
   { name: 'Iron Man', detail: 'Armor up in style', color: 'orange', image: 'https://images.unsplash.com/photo-1541560052-77ec1bbc09f7?auto=format&fit=crop&w=800&q=85' }
@@ -40,7 +40,18 @@ export default function HomePage() {
 
   return (
     <div className="storefront">
-      <section className="hero-panel">
+      <section className="hero-panel page-section-reveal">
+        <video
+          className="hero-video"
+          src="/bg.mp4"
+          title="Superhero costume video"
+          loop
+          muted
+          autoPlay
+          playsInline
+          tabIndex="-1"
+          aria-hidden="true"
+        />
         <div className="hero-copy">
           <p className="eyebrow"><Sparkles size={14} /> The character drop</p>
           <h1>SUIT UP.<br /><span>STAND OUT.</span></h1>
@@ -48,20 +59,18 @@ export default function HomePage() {
           <Link to="/products?category=Superhero" className="lime-button">Explore the drop <ArrowUpRight size={17} /></Link>
         </div>
         <div className="hero-art" aria-label="Superhero costume collection">
-          <div className="hero-sun" />
           <div className="hero-burst">POW!</div>
-          <div className="hero-image hero-image-main" />
           <div className="hero-sticker">NEW<br /><strong>HERO<br />MODE</strong></div>
         </div>
       </section>
 
-      <section className="promise-strip">
+      <section className="promise-strip page-section-reveal">
         <div><Shield size={21} /><span><b>BUILT FOR PLAY</b>Costumes that move with them.</span></div>
         <div><Zap size={21} /><span><b>FAST POWER-UP</b>Ships in 1-2 business days.</span></div>
         <div><Sparkles size={21} /><span><b>ZERO BORING</b>Looks made for main characters.</span></div>
       </section>
 
-      <section className="drop-section">
+      <section className="drop-section page-section-reveal">
         <div className="section-heading">
           <div><p className="eyebrow">Pick your power</p><h2>CHARACTER <span>DROPS</span></h2></div>
           <Link to="/products" className="text-link">View all costumes <ChevronRight size={16} /></Link>
@@ -77,7 +86,7 @@ export default function HomePage() {
       </section>
 
       {featuredProducts.length > 0 && (
-        <section className="catalog-section">
+        <section className="catalog-section page-section-reveal">
           <div className="max-w-7xl mx-auto px-4">
             <div className="section-heading"><div><p className="eyebrow">Fresh from headquarters</p><h2>TOP <span>PICKS</span></h2></div><Star size={20} fill="currentColor" /></div>
             {loading ? <div className="flex justify-center"><Loader className="animate-spin" size={40} /></div> : <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">{featuredProducts.map((product) => <ProductCard key={product._id} product={product} />)}</div>}
@@ -85,16 +94,16 @@ export default function HomePage() {
         </section>
       )}
 
-      {newProducts.length > 0 && (
-        <section className="catalog-section new-section">
+      {/* {newProducts.length > 0 && (
+        <section className="catalog-section new-section page-section-reveal">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="section-heading"><div><p className="eyebrow">Just landed</p><h2>NEW <span>ARRIVALS</span></h2></div></div>
+            <div className="section-heading"><div><p className="eyebrow">Just landed</p><h2>COSTUMES<span></span></h2></div></div>
             {loading ? <div className="flex justify-center"><Loader className="animate-spin" size={40} /></div> : <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">{newProducts.map((product) => <ProductCard key={product._id} product={product} />)}</div>}
           </div>
         </section>
-      )}
+      )} */}
 
-      <section className="family-banner">
+      <section className="family-banner page-section-reveal">
         <div><p className="eyebrow">The CostumeMart club</p><h2>MAKE THEIR<br /><span>ENTRANCE ICONIC.</span></h2></div>
         <div><p>Get first access to fresh drops, party ideas, and heroic savings.</p><Link to="/products" className="lime-button">Shop all costumes <ArrowUpRight size={17} /></Link></div>
       </section>
